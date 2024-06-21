@@ -13,15 +13,27 @@ MB = 4.5  # bottom quark mass
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
 
+# the project directory
 project_path = Path(__file__).parent.parent
 
-def get_spec_path(integral_name: str):
-    # the lib/dir
+
+def get_spec_path(name: str) -> Path:
+    """
+    Return the specification_path of an integral.
+
+    :param integral_name: The name of an integral from a generate file
+    :type integral_name: str
+
+    :return: The specification_path parameter
+    :rtype: Path
+    """
+    # It is assumed that the generate files are contained in lib/, a
+    # directory in the project directory.
     lib_path = project_path.joinpath('lib')
     return lib_path\
-        .joinpath(integral_name)\
+        .joinpath(name)\
         .joinpath('disteval')\
-        .joinpath(f'{integral_name}.json')
+        .joinpath(f'{name}.json')
 
 
 def keyhole(
