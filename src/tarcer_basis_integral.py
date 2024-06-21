@@ -1,5 +1,6 @@
 """Tarcer basis integral class"""
 from pySecDec.integral_interface import DistevalLibrary
+from sympy import sympify
 
 
 class TarcerBasisIntegral:
@@ -18,7 +19,7 @@ class TarcerBasisIntegral:
             DistevalLibrary(specification_path, workers, verbose)
         self.squared_masses = squared_masses
         
-    def eval(self, qq: str, **kwargs) -> str:
+    def eval(self, qq, **kwargs) -> str:
         """
         Evaluate an integral.
         """
@@ -41,5 +42,5 @@ if __name__ == '__main__':
         .joinpath('TBI_1_m1_1_m2.json')
     
     tbi = TarcerBasisIntegral(json_path, {'m1m1': '1.2', 'm2m2': '4.2'})
-    result = tbi.eval(qq='10.0', format='mathematica', epsrel=1e-6, epsabs=1e-9)
+    result = tbi.eval(qq=sympify(31.0 - 1e-3j), format='mathematica', epsrel=1e-6, epsabs=1e-9)
     print(result)
