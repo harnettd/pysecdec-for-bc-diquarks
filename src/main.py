@@ -1,8 +1,7 @@
 """
-Generate pySecDec data.
+Generate pySecDec data needed for an LSRs analysis of bc-diqaurk
+masses.
 """
-import numpy as np
-
 from pathlib import Path
 from sympy import sympify
 
@@ -38,54 +37,61 @@ def get_spec_path(name: str) -> Path:
         .joinpath(f'{name}.json')
 
 
-def main():
-    # Define all dim-reg integrals.
-    integrals = {
-        'tbi_1_mc_1_mb': {
-            'specification_path': get_spec_path('TBI_1_m1_1_m2'),
-            'squared_masses': {'m1m1': mcmc, 'm2m2': mbmb},
-            'tarcer_basis_integral': None,
-            'corr_vals': []
-        },
-        'tji_1_mc_1_mb': {
-            'specification_path': get_spec_path('TJI_1_m1_1_m2_1_0'),
-            'squared_masses': {'m1m1': mcmc, 'm2m2': mbmb},
-            'tarcer_basis_integral': None,
-            'corr_vals': []
-        },
-        'tji_2_mc_1_mb': {
-            'specification_path': get_spec_path('TJI_2_m1_1_m2_1_0'),
-            'squared_masses': {'m1m1': mcmc, 'm2m2': mbmb},
-            'tarcer_basis_integral': None,
-            'corr_vals': []
-        },
-        'tji_1_mc_2_mb': {
-            'specification_path': get_spec_path('TJI_2_m1_1_m2_1_0'),
-            'squared_masses': {'m1m1': mbmb, 'm2m2': mcmc},
-            'tarcer_basis_integral': None,
-            'corr_vals': []
-        }
+def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
+    """
+    Initialize a dim-reg-integral dictionary.
+
+    :param name: The integral's name from the generate file
+    :type name: str
+
+    :param m1m1: The first squared propagator mass
+    :type: str
+
+    :param: The second squared propagator mass
+    :type: str
+
+    :return: A dim-reg-integral dictionary
+    :rtype: dict
+    """
+    return {
+        'tarcer_basis_integral':
+            TarcerBasisIntegral(
+                get_spec_path(name),
+                {'m1m1': m1m1, 'm2m2': m2m2},
+                verbose=False
+            ),
+        'vals': []
     }
 
-    for props in integrals.values():
-        props['tarcer_basis_integral'] =\
-            TarcerBasisIntegral(
-                specification_path=props['specification_path'],
-                squared_masses=props['squared_masses'],
-                verbose=False
-            )
 
-    # Define the domain.
-    domain = keyhole((MC + MB) ** 2, 1.5, 50, 5, 5, 1e-3)
+def main():
+    # Initialize all dim-reg integrals.
+    integrals = {}
+    integrals['tbi_1_mc_1_mb'] =\
+        init_integral('TBI_1_m1_1_m2', mcmc, mbmb)
+    integrals['tji_1_mc_1_mb'] =\
+        init_integral('TJI_1_m1_1_m2_1_0', mcmc, mbmb)
+    integrals['tji_2_mc_1_mb'] =\
+        init_integral('TJI_2_m1_1_m2_1_0', mcmc, mbmb)
+    integrals['tji_1_mc_2_mb'] =\
+        init_integral('TJI_2_m1_1_m2_1_0', mbmb, mcmc)
+
+    # Define the keyhole domain.
+    domain = keyhole(
+        centre=(MC + MB) ** 2, 
+        radius=1.5, 
+        max_re_qq=75, 
+        num_pts_arc=5, 
+        num_pts_line=10, 
+        delta=1e-3
+    )
 
     # Evaluate each integral at each point of the domain.
     for qq in domain:
-        # print(f'qq = {qq}')
-        for props in integrals.values():
-            int_val = props['tarcer_basis_integral'].eval(sympify(qq), format="mathematica")
-            props['corr_vals'].append(int_val)
-            # print(f'int_val = {int_val}')
-        # print()
+        for integral_props in integrals.values():
+            val = integral_props['tarcer_basis_integral']\
+                .eval(sympify(qq), format="mathematica")
+            integral_props['vals'].append(val)
 
     # Write domain to file.
     data_path = project_path.joinpath('data')
@@ -94,7 +100,7 @@ def main():
     # Write integral values to files.
     for name in integrals:
         write_integral_vals(
-            integrals[name]['corr_vals'],
+            integrals[name]['vals'],
             data_path.joinpath(f'{name}-vals.m')
         )
 
