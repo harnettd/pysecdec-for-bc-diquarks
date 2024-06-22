@@ -54,7 +54,7 @@ def keyhole(
     # There are problems with roundoff error when theta == np.pi.
     # It's better to handle this value as a special case.
     arc = centre + radius * np.exp(thetas[1:] * 1j)
-    np.insert(arc, 0, centre - radius)
+    arc = np.insert(arc, 0, centre - radius)
 
     qq_line = np.linspace(min_re_qq, max_re_qq, num_pts_line, 
                           dtype=np.complex64) + delta * 1j
