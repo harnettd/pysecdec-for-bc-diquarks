@@ -6,7 +6,9 @@ import numpy as np
 from pathlib import Path
 from sympy import sympify
 
+from keyhole import keyhole
 from tarcer_basis_integral import TarcerBasisIntegral
+from utils import write_domain, write_integral_vals
 
 MC = 1.2  # charm quark mass
 MB = 4.5  # bottom quark mass
@@ -34,58 +36,6 @@ def get_spec_path(name: str) -> Path:
         .joinpath(name)\
         .joinpath('disteval')\
         .joinpath(f'{name}.json')
-
-
-def keyhole(
-        centre: float, 
-        radius: float, 
-        max_re_qq: float,
-        num_pts_half_circle: int, 
-        num_pts_line: int,
-        delta: float = 1e-6) -> np.array:
-    """
-    Return a keyhole
-    """
-    assert isinstance(centre, float)
-    assert radius > 0 
-    assert max_re_qq > centre + radius
-    assert isinstance(num_pts_line, int)
-    assert isinstance(num_pts_half_circle, int)
-    assert delta > 0 
-    assert delta < radius
-
-    min_re_qq = centre + np.sqrt(radius ** 2 + delta ** 2)
-    max_theta = np.arctan(delta / min_re_qq)
-
-    thetas = np.linspace(np.pi, max_theta, num_pts_half_circle,
-                         dtype=np.complex64)
-    
-    arc = centre + radius * np.exp(thetas[1:] * 1j)
-    np.insert(arc, 0, centre - radius)
-
-    qq_line = np.linspace(min_re_qq, max_re_qq, num_pts_line, 
-                          dtype=np.complex64) + delta * 1j
-
-    return np.concatenate((arc[:-1], qq_line))
-
-
-def complex_to_str(c):
-    return f'({c.real}) + ({c.imag})*I'
-
-
-def write_domain(domain, path):
-    tmp = [complex_to_str(p) for p in domain]
-    with open(path, 'w') as file:
-        file.write('{')
-        file.writelines(',\n'.join(tmp))
-        file.write('}')
-
-
-def write_integral_vals(integral_values: list, path):
-    with open(path, 'w') as file:
-        file.write('{')
-        file.writelines(',\n'.join(integral_values))
-        file.write('}')    
 
 
 def main():
