@@ -1,6 +1,5 @@
 """
-Generate pySecDec data needed for an LSRs analysis of bc-diqaurk
-masses.
+Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 """
 from pathlib import Path
 from sympy import sympify
@@ -9,8 +8,8 @@ from keyhole import keyhole
 from tarcer_basis_integral import TarcerBasisIntegral
 from utils import write_domain, write_integral_vals
 
-MC = 1.2  # charm quark mass
-MB = 4.5  # bottom quark mass
+MC = 1.27 
+MB = 4.18
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
 
