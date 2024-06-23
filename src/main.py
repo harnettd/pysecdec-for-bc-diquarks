@@ -5,11 +5,10 @@ from pathlib import Path
 from sympy import sympify
 
 from keyhole import keyhole
+from keyhole_params import *
 from two_point_function import TwoPointFunction
 from utils import write_domain, write_integral_vals
 
-MC = 1.27 
-MB = 4.18
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
 
@@ -77,12 +76,12 @@ def main():
 
     # Define the keyhole domain.
     domain = keyhole(
-        centre=(MC + MB) ** 2, 
-        radius=1.5, 
-        max_re_qq=75, 
-        num_pts_arc=5, 
-        num_pts_line=10, 
-        delta=1e-3
+        centre=CENTRE, 
+        radius=RADIUS, 
+        max_re_qq=MAX_RE_QQ,
+        num_pts_arc=NUM_PTS_LINE,
+        num_pts_line=NUM_PTS_ARC,
+        delta=DELTA
     )
 
     # Evaluate each integral at each point of the domain.
