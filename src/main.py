@@ -5,7 +5,7 @@ from pathlib import Path
 from sympy import sympify
 
 from keyhole import keyhole
-from tarcer_basis_integral import TarcerBasisIntegral
+from two_point_function import TwoPointFunction
 from utils import write_domain, write_integral_vals
 
 MC = 1.27 
@@ -54,7 +54,7 @@ def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
     """
     return {
         'tarcer_basis_integral':
-            TarcerBasisIntegral(
+            TwoPointFunction(
                 get_spec_path(name),
                 {'m1m1': m1m1, 'm2m2': m2m2},
                 verbose=False
