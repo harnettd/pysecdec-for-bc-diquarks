@@ -8,6 +8,8 @@ and m1 and m2 are propagator masses.
 """
 import pySecDec as psd
 
+from quark_masses import MC, MB
+
 if __name__ == '__main__':
 	li = psd.LoopIntegralFromGraph(
 		internal_lines=[
@@ -34,27 +36,32 @@ if __name__ == '__main__':
 	kinematics_symbols = ['qq']
 	mass_symbols = ['m1m1', 'm2m2']
 
+	rg_scale = (MC + MB) / 2  # renormalization scale
+	additional_prefactor =\
+		f'1 / (({rg_scale} ** (4 * eps)) * (pi ** (4 + 2 * eps)))'
+
 	psd.loop_package(
 		name='TJI_2_m1_1_m2_1_0',
 		loop_integral=li,
 		complex_parameters=kinematics_symbols,
 		real_parameters=mass_symbols,
+		additional_prefactor=additional_prefactor,
 
 		# The order of the epsilon expansion 
-		requested_order = 2,
+		requested_orders = [2],
 
 		# The optimization level to use in FORM (can be 0, 1, 2, 3, 4)
 		form_optimization_level = 2,
 
 		# the WorkSpace parameter for FORM
-		form_work_space = '500M',
+		form_work_space = '100M',
 
 		# The method to use for sector decomposition:
 		# 	'iterative' or 'geometric' or 'geometric_ku'
-		decomposition_method = 'geometric',
+		decomposition_method = 'iterative',
 			
 		# If you choose the decomposition_method 'geometric[_ku]',
 		# but 'normaliz' is not in your $PATH, then set the path 
 		# to the 'normaliz' command-line executable here:
-		normaliz_executable='/home/derek/normaliz-3.10.3/normaliz'
+		# normaliz_executable='/home/derek/normaliz-3.10.3/normaliz'
 	)
