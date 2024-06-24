@@ -79,8 +79,8 @@ def main():
         centre=CENTRE, 
         radius=RADIUS, 
         max_re_qq=MAX_RE_QQ,
-        num_pts_arc=NUM_PTS_LINE,
-        num_pts_line=NUM_PTS_ARC,
+        num_pts_arc=NUM_PTS_ARC,
+        num_pts_line=NUM_PTS_LINE,
         delta=DELTA
     )
 
