@@ -2,7 +2,7 @@
 Parameters needed to define a keyhole domain.
 """
 # quark masses
-MC = 1.27  # charn
+MC = 1.27  # charm
 MB = 4.18  # bottom
 
 # the centre of the arc portion of the keyhole
