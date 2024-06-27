@@ -4,3 +4,4 @@ scratch*
 __pycache__/
 lib/
 .ipynb_checkpoints/
+.virtual_documents/
