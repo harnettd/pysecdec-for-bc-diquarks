@@ -2,12 +2,12 @@
 
 The Tarcer basis integrals
 
-- $\mathrm{TBI}(d, q^2, \{\{1, m_c\}, \{1, m_b\}\})$
-- $\mathrm{TJI}(d, q^2, \{\{1, m_c\}, \{1, m_b\}, \{1, 0\}\})$
-- $\mathrm{TJI}(d, q^2, \{\{2, m_c\}, \{1, m_b\}, \{1, 0\}\})$
-- $\mathrm{TJI}(d, q^2, \{\{1, m_c\}, \{2, m_b\}, \{1, 0\}\})$,
+- $\mathrm{TBI}(d, q^2, [[1, m_c], [1, m_b]])$
+- $\mathrm{TJI}(d, q^2, [[1, m_c], [1, m_b], [1, 0]])$
+- $\mathrm{TJI}(d, q^2, [[2, m_c], [1, m_b], [1, 0]])$
+- $\mathrm{TJI}(d, q^2, [[1, m_c], [2, m_b], [1, 0]])$,
 
-where $d = 4 + 2\epsilon$ and $m_c$ & $m_b$ are the charm and bottom quark masses respectively, are evaluated for $q^2$ along a keyhole contour (for $\mathrm{Im}(q^2) \geq 0$) using [pySecDec](https://pypi.org/project/pySecDec/). The paramters that define the keyhole contour are set in `src/keyhole_params.py`:
+where $d = 4 + 2\epsilon$ and $m_c$ & $m_b$ are the charm and bottom quark masses respectively, are evaluated for $q^2$ along a keyhole contour (for $\mathrm{Im}(q^2) \geq 0$) using [pySecDec](https://pypi.org/project/pySecDec/). The parameters that characterize the keyhole contour are defined in `src/keyhole_params.py`:
 
 ```python
 # quark masses
