@@ -1,8 +1,8 @@
-name: pysecdec-env
+name: pysecdec
 channels:
+  - conda-forge
   - anaconda
   - defaults
-  - conda-forge
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
@@ -270,7 +270,6 @@ dependencies:
   - spyder-kernels=2.5.0=py39h06a4308_0
   - sqlite=3.45.3=h5eee18b_0
   - stack_data=0.2.0=pyhd3eb1b0_0
-  - sympy=1.12=py39h06a4308_0
   - tbb=2021.8.0=hdb19cb5_0
   - terminado=0.17.1=py39h06a4308_0
   - testpath=0.6.0=py39h06a4308_0
@@ -312,5 +311,6 @@ dependencies:
   - zlib=1.2.13=h5eee18b_1
   - zstd=1.5.5=hc292b87_2
   - pip:
-      - pysecdec==1.6
-prefix: /home/derek/anaconda3/envs/pysecdec-env
+      - pysecdec==1.6.3
+      - sympy==1.10.1
+prefix: /home/derek/anaconda3/envs/pysecdec
