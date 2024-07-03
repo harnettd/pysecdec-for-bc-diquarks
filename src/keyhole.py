@@ -3,19 +3,25 @@ import numpy as np
 
 from typing import Union
 
+from real_params import real_params
 
+
+@real_params
 def keyhole(
         centre: Union[int, float], 
         radius: Union[int, float], 
         max_re_qq: Union[int, float],
         num_pts_arc: int, 
-        num_pts_line: int,
-        delta: float = 1e-6) -> np.array:
+        num_pts_line: int, 
+        delta: float = 1e-6
+    ) -> np.array:
     """
     Return a keyhole domain.
 
+    Note that all parameters must be real-valued.
+
     :param centre: The centre of the arc portion of the keyhole
-    :type: Union[int, float]
+    :type: Union[int or float]
 
     :param radius: The radius of the arc portion of the keyhole
     :type: Union[int, float]
@@ -57,17 +63,15 @@ def keyhole(
     
     # There are problems with roundoff error when theta == np.pi.
     # It's better to handle this value as a special case.
-    arc = centre + radius * np.exp(thetas[1:] * 1j)
-    arc = np.insert(arc, 0, centre - radius)
+    qq_arc = centre + radius * np.exp(thetas[1:] * 1j)
+    qq_arc = np.insert(qq_arc, 0, centre - radius)
 
     qq_line = np.linspace(min_re_qq, max_re_qq, num_pts_line, 
                           dtype=np.complex64) + delta * 1j
 
     # We drop the final element of arc to avoid double counting it.
-    return np.concatenate((arc[:-1], qq_line))
+    return np.concatenate((qq_arc[:-1], qq_line))
 
 
 if __name__ == '__main__':
     print(__doc__)
- 
-    result = keyhole(2, 1, 10, 5, 5, 1e-3)
