@@ -3,7 +3,19 @@ import functools
 
 
 def is_real(x) -> bool:
-    """Return True if x is real-valued; False otherwise."""
+    """
+    Return True if x is real-valued; False otherwise.
+    
+    Usage examples:
+    >>> is_real(3)
+    True
+    >>> is_real(3.1)
+    True
+    >>> is_real(3j)
+    False
+    >>> is_real("string")
+    False
+    """
     # ints and floats are considered real-valued.
     real = (int, float)  
     return isinstance(x, real)
