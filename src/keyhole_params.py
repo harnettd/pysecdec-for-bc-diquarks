@@ -1,6 +1,4 @@
-"""
-Parameters needed to define a keyhole domain.
-"""
+"""Parameters needed to define a keyhole domain."""
 # quark masses
 MC = 1.27  # charm
 MB = 4.18  # bottom
@@ -15,10 +13,10 @@ RADIUS = 5.0
 MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 300
+NUM_PTS_LINE = 5
 
 # the number of grid points on the arc portion of the keyhole
-NUM_PTS_ARC = 25
+NUM_PTS_ARC = 5
 
 # The value of Im(q**2) along the line portion of the keyhole
 DELTA = 1e-6
@@ -26,3 +24,11 @@ DELTA = 1e-6
 
 if __name__ == '__main__':
     print(__doc__)
+    print(f'MC = {MC}')
+    print(f'MB = {MB}')
+    print(f'CENTRE = {CENTRE}')
+    print(f'RADIUS = {RADIUS}')
+    print(f'MAX_RE_QQ = {MAX_RE_QQ}')
+    print(f'NUM_PTS_LINE = {NUM_PTS_LINE}')
+    print(f'NUM_PTS_ARC = {NUM_PTS_ARC}')
+    print(f'DELTA = {DELTA}')
