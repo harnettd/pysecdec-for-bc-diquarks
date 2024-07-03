@@ -35,16 +35,20 @@ def keyhole(
     :return: A keyhole domain
     :rtype: Array
     """
-    assert isinstance(centre, float) or isinstance(centre, int)
-    assert radius > 0 
-    assert max_re_qq > centre + radius
-    assert isinstance(num_pts_line, int)
-    assert isinstance(num_pts_arc, int)
-    assert delta > 0 
-    assert delta < radius
+    # Check the input parameters for acceptable values.
+    if radius <= 0:
+        raise ValueError(f'Expected positive radius, got {radius}')
+    if max_re_qq <= 0:
+        raise ValueError(f'Expected positive max_re_qq, got {max_re_qq}')
+    if delta <= 0:
+        raise ValueError(f'Expected positive delta, got {delta}') 
+    if centre + radius >= max_re_qq:
+        raise ValueError(f'Expected centre + radius < max_re_qq')
+    if delta >= radius:
+        raise ValueError(f'Expected delta < radius')
 
     # Determine the coordinates at which the line portion of the 
-    # keyhole intersects with the arc portion of the keyhole.
+    # keyhole intersects the arc portion of the keyhole.
     min_re_qq = centre + np.sqrt(radius ** 2 + delta ** 2)
     max_theta = np.arctan(delta / min_re_qq)
 
@@ -66,3 +70,4 @@ def keyhole(
 if __name__ == '__main__':
     print(__doc__)
  
+    result = keyhole(2, 1, 10, 5, 5, 1e-3)
