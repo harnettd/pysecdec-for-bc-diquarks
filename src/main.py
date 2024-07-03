@@ -25,14 +25,14 @@ def get_spec_path(name: str) -> Path:
 
     :return: The specification_path parameter
     :rtype: Path
+
+    Usage examples:
+    >>> path = get_spec_path('TJI').relative_to(project_path)
+    >>> str(path)
+    'lib/TJI/disteval/TJI.json'
     """
-    # It is assumed that the generate files are contained in lib/, a
-    # directory in the project directory.
-    lib_path = project_path.joinpath('lib')
-    return lib_path\
-        .joinpath(name)\
-        .joinpath('disteval')\
-        .joinpath(f'{name}.json')
+    lib_path = project_path / 'lib'
+    return lib_path.joinpath(name, 'disteval', f'{name}.json')
 
 
 def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
