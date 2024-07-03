@@ -21,11 +21,18 @@ def get_additional_prefactor(
 
     :return: The additional_prefactor parameter value
     :rtype: A sympy expression
-    """
-    # renormalization scale
-    scale = (masses[0] + masses[1]) / 2
 
-    dim = symbols('dim')
+    Usage examples:
+    >>> from sympy import simplify
+    >>> eps = symbols('eps')
+    >>> calc = get_additional_prefactor(4 + 2 * eps, 1, [1, 3])
+    >>> actual = sympify("-I / ((pi ** 2) * ((4 * pi) ** eps))")
+    >>> simplify(calc - actual)
+    0
+    """
+    scale = (masses[0] + masses[1]) / 2  # renormalization scale
+    dim = symbols('dim')  # spacetime dimension
+
     additional_prefactor_per_loop =\
         sympify(f'{scale} ** (4 - dim) / (I * pi ** (dim / 2))')
 
