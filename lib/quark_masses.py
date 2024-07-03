@@ -5,3 +5,5 @@ MB = 4.18  # bottom quark mass
 
 if __name__ == '__main__':
     print(__doc__)
+    print(f'{MC} = MC')
+    print(f'{MB} = MB')
