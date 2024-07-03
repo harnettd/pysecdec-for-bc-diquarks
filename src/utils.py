@@ -32,22 +32,28 @@ def write_domain(domain: ndarray, path: Path) -> None:
     :type path: Path
     """
     complex_strings = [complex_to_str(pt) for pt in domain]
-    with open(path, 'w') as file:
+    with open(path, 'w', encoding='utf-8') as file:
         file.write('{')
-        file.writelines(',\n'.join(complex_strings))
+        file.write(',\n'.join(complex_strings))
         file.write('}')
 
 
-def write_integral_vals(integral_values: list, path: Path) -> None:
+def write_integral_vals(integral_vals: list, path: Path) -> None:
     """
     Write a list of integral values to file.
 
     The output file is intended to be a .m file that can
     be read directly into Mathematica. 
+
+    :param integral_vals: pySecDec-computed integral values
+    :type integral_vals: list
+
+    :param path: The path of the output file
+    :type path: Path
     """
     with open(path, 'w') as file:
         file.write('{')
-        file.writelines(',\n'.join(integral_values))
+        file.write(',\n'.join(integral_vals))
         file.write('}')
 
 
