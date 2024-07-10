@@ -14,7 +14,7 @@ def keyhole(
         num_pts_arc: int, 
         num_pts_line: int, 
         delta: float = 1e-6
-    ) -> np.array:
+) -> np.array:
     """
     Return a keyhole domain.
 
@@ -33,7 +33,7 @@ def keyhole(
     :type: int
 
     :param num_pts_line: The number of points on the line
-    :type int:
+    :type: int
 
     :param delta: The value of Im(qq)
     :type delta: float
@@ -61,7 +61,7 @@ def keyhole(
     thetas = np.linspace(np.pi, max_theta, num_pts_arc,
                          dtype=np.complex64)
     
-    # There are problems with roundoff error when theta == np.pi.
+    # There are problems with round-off error when theta == np.pi.
     # It's better to handle this value as a special case.
     qq_arc = centre + radius * np.exp(thetas[1:] * 1j)
     qq_arc = np.insert(qq_arc, 0, centre - radius)

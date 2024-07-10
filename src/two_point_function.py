@@ -1,5 +1,5 @@
 """
-An implmentation of dimensionally-regularized two-point functions.
+An implementation of dimensionally-regularized two-point functions.
 
 This class is a very thin layer on top of the DistevalLibrary class
 from pySecDec. A two-point function has precisely one external momentum 
@@ -25,10 +25,10 @@ class TwoPointFunction:
     def __init__(
             self, 
             specification_path: Union[str, Path], 
-            squared_masses: dict[str],
+            squared_masses: dict[str, str],
             workers=None,
             verbose=False
-        ) -> None:
+    ) -> None:
         """
         Define a dimensionally-regularized two-point function.
 
@@ -49,8 +49,7 @@ class TwoPointFunction:
 
         :param qq: Squared external momentum
         """
-        parameters = {**self.squared_masses}
-        parameters['qq'] = qq
+        parameters = {**self.squared_masses, 'qq': qq}
         result = self.disteval_lib(parameters=parameters, **kwargs)
         return result
 

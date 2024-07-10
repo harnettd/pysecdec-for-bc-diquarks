@@ -20,8 +20,8 @@ def get_spec_path(name: str) -> Path:
     """
     Return the specification_path of an integral.
 
-    :param integral_name: The name of an integral from a generate file
-    :type integral_name: str
+    :param name: The name of an integral from a generate file
+    :type name: str
 
     :return: The specification_path parameter
     :rtype: Path
@@ -45,7 +45,7 @@ def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
     :param m1m1: The first squared propagator mass
     :type: str
 
-    :param: The second squared propagator mass
+    :param m2m2: The second squared propagator mass
     :type: str
 
     :return: A dim-reg-integral dictionary
@@ -64,15 +64,12 @@ def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
 
 def main():
     # Initialize all dim-reg integrals.
-    integrals = {}
-    integrals['tbi_1_mc_1_mb'] =\
-        init_integral('TBI_1_m1_1_m2', mcmc, mbmb)
-    integrals['tji_1_mc_1_mb'] =\
-        init_integral('TJI_1_m1_1_m2_1_0', mcmc, mbmb)
-    integrals['tji_2_mc_1_mb'] =\
-        init_integral('TJI_2_m1_1_m2_1_0', mcmc, mbmb)
-    integrals['tji_1_mc_2_mb'] =\
-        init_integral('TJI_2_m1_1_m2_1_0', mbmb, mcmc)
+    integrals = {
+        'tbi_1_mc_1_mb': init_integral('TBI_1_m1_1_m2', mcmc, mbmb),
+        'tji_1_mc_1_mb': init_integral('TJI_1_m1_1_m2_1_0', mcmc, mbmb),
+        'tji_2_mc_1_mb': init_integral('TJI_2_m1_1_m2_1_0', mcmc, mbmb),
+        'tji_1_mc_2_mb': init_integral('TJI_2_m1_1_m2_1_0', mbmb, mcmc)
+    }
 
     # Define the keyhole domain.
     domain = keyhole(
@@ -92,14 +89,14 @@ def main():
             integral_props['vals'].append(val)
 
     # Write domain to file.
-    data_path = project_path.joinpath('data')
-    write_domain(domain, data_path.joinpath('domain.m'))
+    data_path = project_path / 'data'
+    write_domain(domain, data_path / 'domain.m')
 
     # Write integral values to files.
     for name in integrals:
         write_integral_vals(
             integrals[name]['vals'],
-            data_path.joinpath(f'{name}-vals.m')
+            data_path / f'{name}-vals.m'
         )
 
 
