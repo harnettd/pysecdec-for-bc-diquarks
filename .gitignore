@@ -5,3 +5,4 @@ __pycache__/
 lib/
 .ipynb_checkpoints/
 .virtual_documents/
+.idea/
