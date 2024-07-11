@@ -20,12 +20,12 @@ def complex_to_str(c: complex) -> str:
 
 def write_domain(domain: ndarray, path: Path) -> None:
     """
-    Write an array of domain elements to file.
+    Write an array of calc elements to file.
 
     The output file is intended to be a .m file that
     can be read into Mathematica.
 
-    :param domain: The domain
+    :param domain: The calc
     :type domain: ndarray
 
     :param path: The path of the output file

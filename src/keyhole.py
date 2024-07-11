@@ -1,9 +1,9 @@
-"""Define a keyhole domain."""
+"""Define a keyhole calc."""
 import numpy as np
 
 from typing import Union
 
-from real_params import real_params
+from src.real_params import real_params
 
 
 @real_params
@@ -16,7 +16,7 @@ def keyhole(
         delta: float = 1e-6
 ) -> np.array:
     """
-    Return a keyhole domain.
+    Return a keyhole calc.
 
     Note that all parameters must be real-valued.
 
@@ -38,7 +38,7 @@ def keyhole(
     :param delta: The value of Im(qq)
     :type delta: float
 
-    :return: A keyhole domain
+    :return: A keyhole calc
     :rtype: Array
     """
     # Check the input parameters for acceptable values.

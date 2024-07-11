@@ -4,10 +4,10 @@ Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 from pathlib import Path
 from sympy import sympify
 
-from keyhole import keyhole
-from keyhole_params import *
-from two_point_function import TwoPointFunction
-from utils import write_domain, write_integral_vals
+from src.keyhole import keyhole
+from src.keyhole_params import *
+from src.two_point_function import TwoPointFunction
+from src.utils import write_domain, write_integral_vals
 
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
@@ -71,7 +71,7 @@ def main():
         'tji_1_mc_2_mb': init_integral('TJI_2_m1_1_m2_1_0', mbmb, mcmc)
     }
 
-    # Define the keyhole domain.
+    # Define the keyhole calc.
     domain = keyhole(
         centre=CENTRE, 
         radius=RADIUS, 
@@ -81,14 +81,14 @@ def main():
         delta=DELTA
     )
 
-    # Evaluate each integral at each point of the domain.
+    # Evaluate each integral at each point of the calc.
     for qq in domain:
         for integral_props in integrals.values():
             val = integral_props['tarcer_basis_integral']\
                 .eval(sympify(qq), format="mathematica")
             integral_props['vals'].append(val)
 
-    # Write domain to file.
+    # Write calc to file.
     data_path = project_path / 'data'
     write_domain(domain, data_path / 'domain.m')
 
