@@ -1,8 +1,8 @@
-scratch*
 *.nb
 
 __pycache__/
-lib/
 .ipynb_checkpoints/
 .virtual_documents/
 .idea/
+TBI*/
+TJI*/
