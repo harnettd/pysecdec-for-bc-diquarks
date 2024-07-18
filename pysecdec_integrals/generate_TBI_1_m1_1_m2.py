@@ -10,15 +10,16 @@ from sympy import symbols
 
 import pySecDec as psd
 
-from get_additional_prefactor import get_additional_prefactor
-from quark_masses import MC, MB
+from pysecdec_integrals.quark_masses import MC, MB
+from pysecdec_integrals.get_additional_prefactor import\
+	get_additional_prefactor as gap
 
 if __name__ == '__main__':
 
 	eps = symbols('eps')
 	dimensionality = 4 + 2 * eps
 	additional_prefactor =\
-		get_additional_prefactor(dimensionality, num_loops=1, masses=[MC, MB])
+		gap.get_additional_prefactor(dimensionality, num_loops=1, masses=[MC, MB])
 
 	li = psd.LoopIntegralFromGraph(
 		internal_lines=[
@@ -52,17 +53,17 @@ if __name__ == '__main__':
 		additional_prefactor=additional_prefactor,
 
 		# The order of the epsilon expansion 
-		requested_orders = [2],
+		requested_orders=[2],
 
 		# The optimization level to use in FORM (can be 0, 1, 2, 3, 4)
-		form_optimization_level = 2,
+		form_optimization_level=2,
 
 		# the WorkSpace parameter for FORM
-		form_work_space = '100M',
+		form_work_space='100M',
 
 		# The method to use for sector decomposition:
 		# 	'iterative' or 'geometric' or 'geometric_ku'
-		decomposition_method = 'iterative',
+		decomposition_method='iterative',
 			
 		# If you choose the decomposition_method 'geometric[_ku]',
 		# but 'normaliz' is not in your $PATH, then set the path 

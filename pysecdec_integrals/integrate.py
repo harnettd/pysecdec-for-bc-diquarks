@@ -4,10 +4,12 @@ Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 from pathlib import Path
 from sympy import sympify
 
-from src.keyhole import keyhole
-from src.keyhole_params import *
-from src.two_point_function import TwoPointFunction
-from src.utils import write_domain, write_integral_vals
+from pysecdec_integrals.keyhole_params import *
+from pysecdec_integrals.integrate_helpers.keyhole import keyhole
+from pysecdec_integrals.integrate_helpers.two_point_function import\
+    TwoPointFunction
+from pysecdec_integrals.integrate_helpers.write_utils import\
+    write_domain, write_integral_vals
 
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
@@ -29,10 +31,9 @@ def get_spec_path(name: str) -> Path:
     Usage examples:
     >>> path = get_spec_path('TJI').relative_to(project_path)
     >>> str(path)
-    'lib/TJI/disteval/TJI.json'
+    'TJI/disteval/TJI.json'
     """
-    lib_path = project_path / 'lib'
-    return lib_path.joinpath(name, 'disteval', f'{name}.json')
+    return project_path.joinpath(name, 'disteval', f'{name}.json')
 
 
 def init_integral(name: str, m1m1: str, m2m2: str) -> dict:

@@ -3,7 +3,7 @@ import numpy as np
 
 from typing import Union
 
-from src.real_params import real_params
+from .real_params import real_params
 
 
 @real_params
@@ -16,7 +16,7 @@ def keyhole(
         delta: float = 1e-6
 ) -> np.array:
     """
-    Return a keyhole calc.
+    Return a keyhole domain.
 
     Note that all parameters must be real-valued.
 
