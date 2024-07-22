@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from src.keyhole import keyhole
+from pysecdec_integrals.integrate_helpers.keyhole import keyhole
 
 CENTRE = 5.0
 RADIUS = 2.0

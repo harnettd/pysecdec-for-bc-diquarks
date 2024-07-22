@@ -1,7 +1,6 @@
 import unittest
 
-from src.utils import complex_to_str
-
+from pysecdec_integrals.integrate_helpers.write_utils import complex_to_str
 
 class TestComplexToStr(unittest.TestCase):
     def test_generic(self):
@@ -19,7 +18,6 @@ class TestComplexToStr(unittest.TestCase):
         """Test zero real part."""
         self.assertEqual(complex_to_str(9j), '(0.0) + (9.0)*I')
         self.assertEqual(complex_to_str(-4.5j), '(-0.0) + (-4.5)*I')
-
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
