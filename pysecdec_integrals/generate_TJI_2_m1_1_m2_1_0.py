@@ -18,8 +18,11 @@ if __name__ == '__main__':
 
 	eps = symbols('eps')
 	dimensionality = 4 + 2 * eps
-	additional_prefactor =\
-		gap.get_additional_prefactor(dimensionality, num_loops=1, masses=[MC, MB])
+	additional_prefactor = gap.get_additional_prefactor(
+		dimensionality, 
+		num_loops=2, 
+		renorm_scale=(MC + MB) / 2
+	)
 
 	li = psd.LoopIntegralFromGraph(
 		internal_lines=[
