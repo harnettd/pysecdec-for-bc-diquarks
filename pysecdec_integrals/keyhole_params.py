@@ -2,23 +2,22 @@
 from pysecdec_integrals.quark_masses import MC, MB
 
 # the centre of the arc portion of the keyhole
-# CENTRE = (MC + MB) ** 2
-CENTRE = 5.0
+CENTRE = (MC + MB) ** 2
 
 # the radius of the arc portion of the keyhole
-RADIUS = 2.0
+RADIUS = 5.0
 
 # the max value of Re(q**2) on the line portion of the keyhole
-MAX_RE_QQ = 11.0
+MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 5
+NUM_PTS_LINE = 100
 
 # the number of grid points on the arc portion of the keyhole
-NUM_PTS_ARC = 5
+NUM_PTS_ARC = 25
 
 # The value of Im(q**2) along the line portion of the keyhole
-DELTA = 1e-9
+DELTA = 1e-6
 
 
 if __name__ == '__main__':

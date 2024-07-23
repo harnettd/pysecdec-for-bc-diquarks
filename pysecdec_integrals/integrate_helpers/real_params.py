@@ -22,7 +22,11 @@ def is_real(x) -> bool:
 
 
 def real_params(f):
-    """Raise a TypeError if any arguments to f are not real-valued."""
+    """
+    Raise a TypeError if any arguments to f are not real-valued.
+
+    This function is intended as a decorator.
+    """
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
         params = list(args) + list(kwargs.values())

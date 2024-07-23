@@ -1,4 +1,4 @@
-"""Utilities for writing data to file."""
+"""Utilities for writing pySecDec-integral data to file."""
 from numpy import ndarray
 from pathlib import Path
 
