@@ -7,13 +7,17 @@ The Tarcer basis integrals
 - $\mathrm{TJI}(d, q^2, [[2, m_c], [1, m_b], [1, 0]])$
 - $\mathrm{TJI}(d, q^2, [[1, m_c], [2, m_b], [1, 0]])$,
 
-where $d = 4 + 2\epsilon$ and $m_c$ & $m_b$ are the charm and bottom quark masses respectively, are evaluated for $q^2$ along a keyhole contour (for $\mathrm{Im}(q^2) \geq 0$) using [pySecDec](https://pypi.org/project/pySecDec/). The parameters that characterize the keyhole contour are defined in `src/keyhole_params.py`:
+where $d = 4 + 2\epsilon$ and $m_c$ & $m_b$ are the charm and bottom quark masses respectively, are evaluated for $q^2$ along a keyhole contour (for $\mathrm{Im}(q^2) \geq 0$) using [pySecDec](https://pypi.org/project/pySecDec/). The parameters that characterize the keyhole contour are defined between `pysecdec_integrals/quark_masses.py`, 
 
 ```python
-# quark masses
-MC = 1.27  # charm
-MB = 4.18  # bottom
+"""Bottom and charm quark masses."""
+MC = 1.27  # charm quark mass
+MB = 4.18  # bottom quark mass
+```
 
+and `pysecdec_integrals/keyhole_params.py`,
+
+```python
 # the centre of the arc portion of the keyhole
 CENTRE = (MC + MB) ** 2
 
@@ -24,7 +28,7 @@ RADIUS = 5.0
 MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 300
+NUM_PTS_LINE = 100
 
 # the number of grid points on the arc portion of the keyhole
 NUM_PTS_ARC = 25
@@ -39,26 +43,28 @@ Integral results corresponding to the above settings of the keyhole domain are w
 
 ## Generating New Integral Results
 
-To generate results for keyhole settings other than those given above, start by creating a conda environment:
+To generate results for keyhole settings other than those given above, start by creating and activating a conda environment:
 
 ```bash
 $ conda env create --file=environment.yml
+$ conda activate pysecdec
 ```
 
-Then, create the code that pySecDec uses to evaluate integrals:
+Then, generate the libraries that pySecDec uses to evaluate integrals:
 
 ```bash
-$ cd lib
-$ python generate_TBI_1_m1_1_m2.py && make -C TBI_1_m1_1_m2 disteval
-$ python generate_TJI_1_m1_1_m2_1_0.py && make -C TJI_1_m1_1_m2_1_0 disteval
-$ python generate_TJI_2_m1_1_m2_1_0.py && make -C TJI_2_m1_1_m2_1_0 disteval
-$ cd ..
+$ make
 ```
 
-Finally, change the keyhole settings by directly editing `src/keyhole_params.py`, and run:
+Optionally, run all available unittests:
+```bash
+$ python -m unittest discover tests
+```
+
+Finally, adjust the quark masses and keyhole parameters as needed by directly editing `pysecdec_integrals/quark_masses.py` and `pysecdec_integrals/keyhole_params.py`, and run:
 
 ```bash
-$ python src/main.py
+$ python -m pysecdec_integrals.integrate
 ```
 
-The five files in the `data/` directory will be overwritten using the new settings of the keyhole domain.
+The five files in the `data/` directory will be overwritten with integral results corresponding to the new settings of the quark masses and keyhole domain.
