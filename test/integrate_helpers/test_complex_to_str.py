@@ -1,3 +1,4 @@
+"""Test complex_to_str() function."""
 import unittest
 
 from pysecdec_integrals.integrate_helpers.utils import complex_to_str

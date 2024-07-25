@@ -1,3 +1,4 @@
+"""Test get_additional_prefactor() function."""
 import unittest
 
 from sympy import symbols, simplify, sympify

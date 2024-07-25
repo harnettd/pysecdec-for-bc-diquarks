@@ -18,6 +18,6 @@ generate:
 	python -m pysecdec_integrals.generate_TBI_1_m1_1_m2
 	python -m pysecdec_integrals.generate_TJI_1_m1_1_m2_1_0
 	python -m pysecdec_integrals.generate_TJI_2_m1_1_m2_1_0
-	make -C TBI_1_m1_1_m2 disteval
-	make -C TJI_1_m1_1_m2_1_0 disteval
-	make -C TJI_2_m1_1_m2_1_0 disteval
+	$(MAKE) -C TBI_1_m1_1_m2 disteval
+	$(MAKE) -C TJI_1_m1_1_m2_1_0 disteval
+	$(MAKE) -C TJI_2_m1_1_m2_1_0 disteval

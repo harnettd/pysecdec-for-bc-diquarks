@@ -19,7 +19,6 @@ from typing import Union
 
 from pySecDec.integral_interface import DistevalLibrary
 
-
 class TwoPointFunction:
 
     def __init__(

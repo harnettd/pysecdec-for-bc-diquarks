@@ -1,3 +1,4 @@
+"""Test keyhole() function."""
 import unittest
 
 import numpy as np

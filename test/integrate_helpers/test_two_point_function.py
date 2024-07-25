@@ -1,9 +1,9 @@
+"""Test TwoPointFunction class."""
 import unittest
 
 from pathlib import Path
 from sympy import sympify
 
-# from pysecdec_integrals import PROJECT_PATH
 from pysecdec_integrals.integrate_helpers.two_point_function import\
     TwoPointFunction
 from pysecdec_integrals.integrate_helpers.utils import get_specification_path
