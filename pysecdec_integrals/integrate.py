@@ -1,39 +1,18 @@
 """
 Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 """
-from pathlib import Path
 from sympy import sympify
 
+from pysecdec_integrals import PROJECT_PATH
 from pysecdec_integrals.keyhole_params import *
 from pysecdec_integrals.integrate_helpers.keyhole import keyhole
 from pysecdec_integrals.integrate_helpers.two_point_function import\
     TwoPointFunction
-from pysecdec_integrals.integrate_helpers.write_utils import\
-    write_domain, write_integral_vals
+from pysecdec_integrals.integrate_helpers.utils import\
+    get_specification_path, write_domain, write_integral_vals
 
 mcmc = str(MC ** 2)
 mbmb = str(MB ** 2)
-
-# the project directory
-project_path = Path(__file__).parent.parent
-
-
-def get_spec_path(name: str) -> Path:
-    """
-    Return the specification_path of an integral.
-
-    :param name: The name of an integral from a generate file
-    :type name: str
-
-    :return: The specification_path parameter
-    :rtype: Path
-
-    Usage examples:
-    >>> path = get_spec_path('TJI').relative_to(project_path)
-    >>> str(path)
-    'TJI/disteval/TJI.json'
-    """
-    return project_path.joinpath(name, 'disteval', f'{name}.json')
 
 
 def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
@@ -55,7 +34,7 @@ def init_integral(name: str, m1m1: str, m2m2: str) -> dict:
     return {
         'tarcer_basis_integral':
             TwoPointFunction(
-                get_spec_path(name),
+                get_specification_path(name),
                 {'m1m1': m1m1, 'm2m2': m2m2},
                 verbose=False
             ),
@@ -90,7 +69,7 @@ def main():
             integral_props['vals'].append(val)
 
     # Write calc to file.
-    data_path = project_path / 'data'
+    data_path = PROJECT_PATH / 'data'
     write_domain(domain, data_path / 'domain.m')
 
     # Write integral values to files.

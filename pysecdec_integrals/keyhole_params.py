@@ -11,14 +11,13 @@ RADIUS = 5.0
 MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 100
+NUM_PTS_LINE = 10
 
 # the number of grid points on the arc portion of the keyhole
-NUM_PTS_ARC = 25
+NUM_PTS_ARC = 5
 
 # The value of Im(q**2) along the line portion of the keyhole
 DELTA = 1e-6
-
 
 if __name__ == '__main__':
     print(__doc__)

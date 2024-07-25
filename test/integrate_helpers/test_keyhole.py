@@ -3,6 +3,7 @@ import unittest
 import numpy as np
 
 from pysecdec_integrals.integrate_helpers.keyhole import keyhole
+from test.utils import complex_round
 
 CENTRE = 5.0
 RADIUS = 2.0
@@ -51,18 +52,13 @@ class TestKeyhole(unittest.TestCase):
             with self.subTest(z=z):
                 self.assertTrue(z.imag >= 0)
 
-    @staticmethod
-    def complex_round(z, n=3):
-        """Round a complex number."""
-        return round(z.real, n) + round(z.imag, n) * 1j
-
     def test_element_values(self):
         """Test the values of the keyhole elements."""
         for idx in range(len(self.calc)):
             with self.subTest(idx=idx):
                 self.assertEqual(
-                    self.complex_round(self.calc[idx], 6),
-                    self.complex_round(self.actual[idx], 6)
+                    complex_round(self.calc[idx], 6),
+                    complex_round(self.actual[idx], 6)
                 )
 
 

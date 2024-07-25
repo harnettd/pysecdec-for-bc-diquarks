@@ -1,6 +1,6 @@
 import unittest
 
-from pysecdec_integrals.integrate_helpers.write_utils import complex_to_str
+from pysecdec_integrals.integrate_helpers.utils import complex_to_str
 
 class TestComplexToStr(unittest.TestCase):
     def test_generic(self):

@@ -58,7 +58,7 @@ $ make
 
 Optionally, run all available unittests:
 ```bash
-$ python -m unittest discover tests
+$ python -m unittest discover
 ```
 
 Finally, adjust the quark masses and keyhole parameters as needed by directly editing `pysecdec_integrals/quark_masses.py` and `pysecdec_integrals/keyhole_params.py`, and run:

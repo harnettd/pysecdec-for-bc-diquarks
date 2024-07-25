@@ -2,6 +2,26 @@
 from numpy import ndarray
 from pathlib import Path
 
+from pysecdec_integrals import PROJECT_PATH
+
+
+def get_specification_path(name: str) -> Path:
+    """
+    Return the specification_path of an integral.
+
+    :param name: The name of an integral from a generate file
+    :type name: str
+
+    :return: The specification_path parameter
+    :rtype: Path
+
+    Usage examples:
+    >>> path = get_spec_path('TJI').relative_to(PROJECT_PATH)
+    >>> str(path)
+    'TJI/disteval/TJI.json'
+    """
+    return PROJECT_PATH.joinpath(name, 'disteval', f'{name}.json')
+
 
 def complex_to_str(c: complex) -> str:
     """
