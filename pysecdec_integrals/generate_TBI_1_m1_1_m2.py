@@ -6,23 +6,16 @@ A pySecDec generate file for the dim-reg integral
 where d = 4 + 2*eps, q**2 is external (Minkowski) squared-momentum,
 and m1 and m2 are propagator masses.
 """
-from sympy import symbols
+from sympy import symbols, sympify
 
 import pySecDec as psd
-
-from pysecdec_integrals.quark_masses import MC, MB
-from pysecdec_integrals.get_additional_prefactor import\
-	get_additional_prefactor as gap
 
 if __name__ == '__main__':
 
 	eps = symbols('eps')
 	dimensionality = 4 + 2 * eps
-	additional_prefactor = gap.get_additional_prefactor(
-		dimensionality, 
-		num_loops=1, 
-		renorm_scale=(MC + MB) / 2
-	)
+	num_loops = 1
+	additional_prefactor = sympify('I') ** num_loops
 
 	li = psd.LoopIntegralFromGraph(
 		internal_lines=[

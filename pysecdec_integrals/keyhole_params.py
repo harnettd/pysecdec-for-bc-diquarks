@@ -11,10 +11,10 @@ RADIUS = 5.0
 MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 10
+NUM_PTS_LINE = 200
 
 # the number of grid points on the arc portion of the keyhole
-NUM_PTS_ARC = 5
+NUM_PTS_ARC = 50
 
 # The value of Im(q**2) along the line portion of the keyhole
 DELTA = 1e-6

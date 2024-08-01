@@ -11,8 +11,8 @@ where $d = 4 + 2\epsilon$ and $m_c$ & $m_b$ are the charm and bottom quark masse
 
 ```python
 """Bottom and charm quark masses."""
-MC = 1.27  # charm quark mass
-MB = 4.18  # bottom quark mass
+MC = 1.095    # charm quark mass
+MB = 4.47521  # bottom quark mass
 ```
 
 and `pysecdec_integrals/keyhole_params.py`,
@@ -28,10 +28,10 @@ RADIUS = 5.0
 MAX_RE_QQ = 125.0
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 100
+NUM_PTS_LINE = 200
 
 # the number of grid points on the arc portion of the keyhole
-NUM_PTS_ARC = 25
+NUM_PTS_ARC = 50
 
 # The value of Im(q**2) along the line portion of the keyhole
 DELTA = 1e-6
