@@ -4,6 +4,7 @@ Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 from sympy import sympify
 
 from pysecdec_integrals import PROJECT_PATH
+from pysecdec_integrals.quark_masses import MC, MB
 from pysecdec_integrals.keyhole_params import *
 from pysecdec_integrals.integrate_helpers.keyhole import keyhole
 from pysecdec_integrals.integrate_helpers.two_point_function import\
