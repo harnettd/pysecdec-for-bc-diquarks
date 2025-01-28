@@ -16,7 +16,7 @@ def get_specification_path(name: str) -> Path:
     :rtype: Path
 
     Usage examples:
-    >>> path = get_spec_path('TJI').relative_to(PROJECT_PATH)
+    >>> path = get_specification_path('TJI').relative_to(PROJECT_PATH)
     >>> str(path)
     'TJI/disteval/TJI.json'
     """
