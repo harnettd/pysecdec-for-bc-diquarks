@@ -2,7 +2,7 @@
 from numpy import ndarray
 from pathlib import Path
 
-from pysecdec_integrals import PROJECT_PATH
+from .. import PROJECT_PATH
 
 
 def get_specification_path(name: str) -> Path:

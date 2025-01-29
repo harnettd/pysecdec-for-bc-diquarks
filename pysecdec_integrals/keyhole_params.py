@@ -1,23 +1,23 @@
 """Parameters needed to define a keyhole calc."""
-from pysecdec_integrals.quark_masses import MC, MB
+from .quark_masses import MC, MB
 
 # the centre of the arc portion of the keyhole
 CENTRE = (MC + MB) ** 2
 
 # the radius of the arc portion of the keyhole
-RADIUS = 5.0
+RADIUS = 15.
 
 # the max value of Re(q**2) on the line portion of the keyhole
-MAX_RE_QQ = 125.0
+MAX_RE_QQ = 150.
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 200
+NUM_PTS_LINE = 250
 
 # the number of grid points on the arc portion of the keyhole
 NUM_PTS_ARC = 50
 
-# The value of Im(q**2) along the line portion of the keyhole
-DELTA = 1e-6
+# the value of Im(q**2) along the line portion of the keyhole
+DELTA = 1e-12
 
 if __name__ == '__main__':
     print(__doc__)

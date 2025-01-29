@@ -3,13 +3,13 @@ Generate pySecDec integral data needed for an analysis of bc-diquark masses.
 """
 from sympy import sympify
 
-from pysecdec_integrals import PROJECT_PATH
-from pysecdec_integrals.quark_masses import MC, MB
-from pysecdec_integrals.keyhole_params import *
-from pysecdec_integrals.integrate_helpers.keyhole import keyhole
-from pysecdec_integrals.integrate_helpers.two_point_function import\
+from . import PROJECT_PATH
+from .quark_masses import MC, MB
+from .keyhole_params import *
+from .integrate_helpers.keyhole import keyhole
+from .integrate_helpers.two_point_function import\
     TwoPointFunction
-from pysecdec_integrals.integrate_helpers.utils import\
+from .integrate_helpers.utils import\
     get_specification_path, write_domain, write_integral_vals
 
 mcmc = str(MC ** 2)
@@ -62,14 +62,14 @@ def main():
         delta=DELTA
     )
 
-    # Evaluate each integral at each point of the calc.
+    # Evaluate each integral at each point of the domain.
     for qq in domain:
         for integral_props in integrals.values():
             val = integral_props['tarcer_basis_integral']\
                 .eval(sympify(qq), format="mathematica")
             integral_props['vals'].append(val)
 
-    # Write calc to file.
+    # Write domain to file.
     data_path = PROJECT_PATH / 'data'
     write_domain(domain, data_path / 'domain.m')
 
