@@ -22,19 +22,19 @@ and `pysecdec_integrals/keyhole_params.py`,
 CENTRE = (MC + MB) ** 2
 
 # the radius of the arc portion of the keyhole
-RADIUS = 5.0
+RADIUS = 15.
 
 # the max value of Re(q**2) on the line portion of the keyhole
-MAX_RE_QQ = 125.0
+MAX_RE_QQ = 150.
 
 # the number of grid points on the line portion of the keyhole
-NUM_PTS_LINE = 200
+NUM_PTS_LINE = 250
 
 # the number of grid points on the arc portion of the keyhole
 NUM_PTS_ARC = 50
 
 # The value of Im(q**2) along the line portion of the keyhole
-DELTA = 1e-6
+DELTA = 1e-12
 ```
 
 ## Integral Results
