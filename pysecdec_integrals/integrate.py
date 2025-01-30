@@ -47,12 +47,14 @@ def main():
     # Initialize all dim-reg integrals.
     integrals = {
         'tbi_1_mc_1_mb': init_integral('TBI_1_m1_1_m2', mcmc, mbmb),
+        'tbi_2_mc_1_mb': init_integral('TBI_1_m1_1_m2', mcmc, mbmb),
+        'tbi_1_mc_2_mb': init_integral('TBI_1_m1_1_m2', mbmb, mcmc),
         'tji_1_mc_1_mb': init_integral('TJI_1_m1_1_m2_1_0', mcmc, mbmb),
         'tji_2_mc_1_mb': init_integral('TJI_2_m1_1_m2_1_0', mcmc, mbmb),
         'tji_1_mc_2_mb': init_integral('TJI_2_m1_1_m2_1_0', mbmb, mcmc)
     }
 
-    # Define the keyhole calc.
+    # Define the keyhole domain.
     domain = keyhole(
         centre=CENTRE, 
         radius=RADIUS, 

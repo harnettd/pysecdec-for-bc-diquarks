@@ -3,6 +3,8 @@
 The Tarcer basis integrals
 
 - $\mathrm{TBI}(d, q^2, [[1, m_c], [1, m_b]])$
+- $\mathrm{TBI}(d, q^2, [[2, m_c], [1, m_b]])$
+- $\mathrm{TBI}(d, q^2, [[1, m_c], [2, m_b]])$
 - $\mathrm{TJI}(d, q^2, [[1, m_c], [1, m_b], [1, 0]])$
 - $\mathrm{TJI}(d, q^2, [[2, m_c], [1, m_b], [1, 0]])$
 - $\mathrm{TJI}(d, q^2, [[1, m_c], [2, m_b], [1, 0]])$,
@@ -39,7 +41,7 @@ DELTA = 1e-12
 
 ## Integral Results
 
-Integral results corresponding to the above settings of the keyhole domain are written to the `data/` directory. There are five files: one for the domain and one for each of the four integrals. All five files are .m files, intended to be read in to a Mathematica notebook.
+Integral results corresponding to the above settings of the keyhole domain are written to the `data/` directory. There are several files: one for the domain and one for each of the integrals. All files are .m files, intended to be read in to a Mathematica notebook.
 
 ## Generating New Integral Results
 
