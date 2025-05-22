@@ -35,7 +35,7 @@ def complex_to_str(c: complex) -> str:
     >>> complex_to_str(-4.5j)
     '(-0.0) + (-4.5)*I'
     """
-    return f'({c.real}) + ({c.imag})*I'
+    return '({:.12f}) + ({:.12f})*I'.format(c.real, c.imag)
 
 
 def write_domain(domain: ndarray, path: Path) -> None:

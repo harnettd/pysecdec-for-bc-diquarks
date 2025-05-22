@@ -24,7 +24,7 @@ and `pysecdec_integrals/keyhole_params.py`,
 CENTRE = (MC + MB) ** 2
 
 # the radius of the arc portion of the keyhole
-RADIUS = 15.
+RADIUS = 15.5136
 
 # the max value of Re(q**2) on the line portion of the keyhole
 MAX_RE_QQ = 150.
